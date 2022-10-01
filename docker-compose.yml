@@ -4,7 +4,7 @@ services:
     platform: linux/amd64
     build: .
     container_name: api
-    command: bash -c "ls ./backend/rest && cd ./backend/rest && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "cd ./backend/rest && python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     links:
@@ -15,9 +15,13 @@ services:
 
   app:
     build: .
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
     platform: linux/amd64
     container_name: app
-    command: bash -c "ls ./frontend/app  && cd /frontend/app && yarn install && yarn start"
+    command: bash -c "cd /frontend/app && yarn install && yarn start"
     ports:
       - "3000:3000"
     volumes:
