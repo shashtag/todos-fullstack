@@ -1,9 +1,10 @@
 version: '2'
 services:
   api:
+    platform: linux/amd64
     build: .
     container_name: api
-    command: bash -c "cd /src/rest && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "ls ./rest && cd ./rest && python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     links:
@@ -14,8 +15,9 @@ services:
 
   app:
     build: .
+    platform: linux/amd64
     container_name: app
-    command: bash -c "cd /src/app && yarn install && yarn start"
+    command: bash -c "ls ./app  && cd /app && yarn install && yarn start"
     ports:
       - "3000:3000"
     volumes:
@@ -23,6 +25,7 @@ services:
 
   mongo:
     build: .
+    platform: linux/amd64
     container_name: mongo
     restart: always
     ports:
