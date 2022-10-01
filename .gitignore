@@ -1,0 +1,6 @@
+/src/db
+/src/app/.eslintcache
+.DS_Store
+/src/rest/mydatabase
+*__.cpython-38.pyc
+*.cpython-38.pyc
