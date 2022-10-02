@@ -1,3 +1,34 @@
-.App {
+body{
+  background-color: #424343;
+  color: white;
+  
+}
+.container{
+  margin: 0 auto;
   text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+}
+
+#todo-input{
+  width: 100%;
+  padding: 0;
+  border: 0;
+  transition: height 200ms ease;
+  box-sizing: border-box;
+  border-radius: 0.25rem;
+}
+#todo-input-label-cont{
+  background-color:#FAA916;
+  width: 100%;
+ height: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: height 200ms ease;
+ border-radius: 0.25rem;
+
+}
+#input-container{
+  height: 2.5rem;
 }
