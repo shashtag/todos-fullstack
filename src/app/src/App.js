@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import useGetData from "./Hooks/useInit";
+const headers = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+};
 
 export function App() {
   const { todos, setTodos, showInput, setShowInput, input, setInput } =
@@ -17,27 +21,25 @@ export function App() {
     try {
       const data = await fetch("http://localhost:8000/todos/", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+        headers,
         body: JSON.stringify({ title: input }),
       }).then((response) => response.json());
       clearState(data);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
   const handleDelete = async (e, id) => {
     try {
       const data = await fetch("http://localhost:8000/todos/", {
         method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
+        headers,
         body: JSON.stringify({ id }),
       }).then((response) => response.json());
       clearState(data);
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
