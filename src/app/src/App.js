@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { UIContext } from "./Context/UIContext";
+import { AppContext } from "./Context/AppContext";
 import Home from "./Pages/Home";
-import Loading from "./Utils/Loader/Loading";
+import Loading from "./Common/Loader/Loading";
 
 export function App() {
-  const { state } = useContext(UIContext);
+  const { state } = useContext(AppContext);
   return (
     <>
       <Home />

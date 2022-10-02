@@ -1,29 +1,19 @@
-import React, { useState } from "react";
-import api from "../../../Api/api";
+import React, { useContext, useState } from "react";
 import SubmitButton from "./SubmitButton/SubmitButton";
 import TodoInput from "./TodoInput/TodoInput";
+import useAPI from "../../../Hooks/useAPI";
 
-const TodoForm = ({ clearState, showInput }) => {
+const TodoForm = () => {
   const [input, setInput] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const data = await api("todos", "POST", { title: input });
-      clearState(data);
-      setInput("");
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const postTodo = useAPI("todos", "POST");
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TodoInput
-        onInputChange={(e) => setInput(e.target.value)}
-        showInput={showInput}
-        input={input}
-      />
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        postTodo({ title: input }, () => setInput(""));
+      }}>
+      <TodoInput input={input} setInput={setInput} />
       <SubmitButton disabled={input === ""} text={"Add ToDo!"} />
     </form>
   );

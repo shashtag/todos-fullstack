@@ -1,26 +1,20 @@
-import React from "react";
-import api from "../../../Api/api";
+import React, { useContext } from "react";
 import TodoListItem from "./TodoListItem/TodoListItem";
 
 import styles from "./TodoList.module.css";
+import { AppContext } from "../../../Context/AppContext";
+import useAPI from "../../../Hooks/useAPI";
 
-const Todos = ({ todos, clearState }) => {
-  const handleDelete = async (e, id) => {
-    try {
-      const data = await api("todos", "DELETE", { id });
-      clearState(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+const Todos = () => {
+  const { state } = useContext(AppContext);
+  const deleteTodo = useAPI("todos", "DELETE");
   return (
     <div className={styles["todo-item-cont"]}>
-      {todos.map((todo) => (
+      {state.todos.map((todo) => (
         <TodoListItem
           key={todo["_id"].$oid}
           title={todo.title}
-          clearState={clearState}
-          iconOnClick={(e) => handleDelete(e, todo["_id"].$oid)}
+          iconOnClick={() => deleteTodo({ id: todo["_id"].$oid })}
         />
       ))}
     </div>

@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./TodoInput.module.css";
 
-const TodoInput = ({ onInputChange, showInput, input }) => {
+const TodoInput = ({ input, setInput }) => {
+  const [showInput, setShowInput] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    document.body.addEventListener("click", (e) => {
+      if (
+        !["todo-input-label", "todo-input-label-cont", "todo-input"].includes(
+          e.target.id,
+        )
+      ) {
+        setShowInput(false);
+        ref.current.blur();
+      }
+    });
+
+    return () => {};
+  }, []);
   return (
     <div id={styles["input-container"]}>
       <div
+        onClick={() => {
+          ref.current.focus();
+          setShowInput(true);
+        }}
         id='todo-input-label-cont'
         className={styles["todo-input-label-cont"]}
         style={{
@@ -20,6 +41,11 @@ const TodoInput = ({ onInputChange, showInput, input }) => {
         </label>
       </div>
       <input
+        onFocus={() => {
+          ref.current.focus();
+          setShowInput(true);
+        }}
+        onBlur={() => setShowInput(false)}
         type='text'
         style={{
           height: showInput ? "40px" : "0",
@@ -27,9 +53,10 @@ const TodoInput = ({ onInputChange, showInput, input }) => {
           opacity: showInput ? 1 : 0,
         }}
         id='todo-input'
+        ref={ref}
         className={styles["todo-input"]}
         value={input}
-        onChange={onInputChange}
+        onChange={(e) => setInput(e.target.value)}
       />
     </div>
   );

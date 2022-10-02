@@ -1,20 +1,21 @@
-import React from "react";
-import useInit from "../Hooks/useInit";
+import React, { useEffect } from "react";
 import Header from "../Components/Header/Header";
 import TodoForm from "../Components/TodoApp/TodoForm/TodoForm";
 import TodoList from "../Components/TodoApp/TodoList/TodoList";
+import useAPI from "../Hooks/useAPI";
 const Home = () => {
-  const { todos, setTodos, showInput, setShowInput } = useInit();
+  const getTodos = useAPI("todos", "GET");
 
-  const clearState = (data) => {
-    setTodos(data);
-    setShowInput(false);
-  };
+  useEffect(() => {
+    getTodos();
+    return () => {};
+  }, []);
+
   return (
     <div className='container'>
       <Header />
-      <TodoForm showInput={showInput} clearState={clearState} />
-      <TodoList todos={todos} clearState={clearState} />
+      <TodoForm />
+      <TodoList />
     </div>
   );
 };
