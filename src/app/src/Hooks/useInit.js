@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { initialData } from "../initialData";
+import api from "../Api/api";
+import { initialData } from "../Data/initialData";
 
 const useInit = () => {
   const [todos, setTodos] = useState(initialData);
   const [showInput, setShowInput] = useState(false);
-  const [input, setInput] = useState("");
+
   const getData = async () => {
     try {
-      const data = await fetch("http://localhost:8000/todos/").then(
-        (response) => response.json(),
-      );
+      const data = await api("todos");
       console.log(data);
       setTodos(data);
     } catch (e) {}
@@ -30,7 +29,7 @@ const useInit = () => {
     return () => {};
   }, []);
 
-  return { todos, setTodos, showInput, input, setInput, setShowInput };
+  return { todos, setTodos, showInput, setShowInput };
 };
 
 export default useInit;

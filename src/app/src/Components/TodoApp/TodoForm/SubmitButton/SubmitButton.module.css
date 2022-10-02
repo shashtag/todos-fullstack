@@ -1,0 +1,13 @@
+#submit-input{
+  color: white;
+  height: 2.5rem;
+  background-color: #2667FF;
+  margin-top: 0.75rem;
+  border: 0;
+  transition: height 200ms ease;
+ border-radius: 0.25rem;
+ width: 100%;
+}
+#submit-input:disabled{
+  filter: grayscale(50%);
+}

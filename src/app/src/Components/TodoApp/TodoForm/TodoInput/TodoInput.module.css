@@ -1,0 +1,28 @@
+#input-container{
+  height: 2.5rem;
+ border-radius: 0.25rem;
+}
+
+.todo-input-label-cont{
+  cursor: pointer;
+ background-color:#FAA916;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transition: height 200ms ease;
+ border-radius: 0.25rem;
+ width: 100%;
+}
+
+.todo-input-label{
+  cursor: pointer;
+}
+
+.todo-input{
+  padding: 0;
+  border: 0;
+  transition: height 200ms ease;
+  border-radius: 0.25rem;
+  width: 100%;
+}
+
