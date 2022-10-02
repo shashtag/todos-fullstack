@@ -2,6 +2,7 @@
 .DS_Store
 *__.cpython-38.pyc
 *.cpython-38.pyc
+/src/db/diagnostic.data
 
 # NPM #
 ##########
