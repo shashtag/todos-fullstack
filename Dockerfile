@@ -35,8 +35,6 @@ ENV PYTHONPATH=$PYTHONPATH:/src/
 
 # copy the dependencies file to the working directory
 COPY src/requirements.txt .
-# COPY src .
-# COPY src/app .
 
 # install dependencies
 RUN pip install -r requirements.txt
