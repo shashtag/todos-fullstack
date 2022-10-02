@@ -1,0 +1,3 @@
+bulid:
+  docker:
+    web:"Dockerfile"
