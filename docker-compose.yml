@@ -1,17 +1,21 @@
 version: '2'
 services:
   api:
-    platform: linux/amd64
     build: .
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
+    platform: linux/amd64
     container_name: api
-    command: bash -c "cd ./backend/rest && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "cd ./backend && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     links:
       - mongo
     volumes:
       - ${ADBREW_CODEBASE_PATH}/tmp:/tmp
-      - ${ADBREW_CODEBASE_PATH}:/backend
+      - ${ADBREW_CODEBASE_PATH}/rest:/backend
 
   app:
     build: .
@@ -21,12 +25,12 @@ services:
     tty: true
     platform: linux/amd64
     container_name: app
-    command: bash -c "cd /frontend/app && yarn install && yarn start"
+    command: bash -c "cd /frontend && yarn install && yarn start"
     ports:
       - "3000:3000"
     volumes:
-      - ${ADBREW_CODEBASE_PATH}:/frontend
-      - '/frontend/app/node_modules'
+      - ${ADBREW_CODEBASE_PATH}/app:/frontend
+      - '/frontend/node_modules'
 
   mongo:
     build: .
