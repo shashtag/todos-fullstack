@@ -1,8 +1,4 @@
-body{
-  background-color: #424343;
-  color: white;
-  
-}
+
 .container{
   margin: 0 auto;
   text-align: center;
@@ -11,24 +7,62 @@ body{
 }
 
 #todo-input{
-  width: 100%;
   padding: 0;
   border: 0;
-  transition: height 200ms ease;
-  box-sizing: border-box;
-  border-radius: 0.25rem;
+
 }
 #todo-input-label-cont{
   background-color:#FAA916;
-  width: 100%;
  height: 100%;
  display: flex;
  align-items: center;
  justify-content: center;
- transition: height 200ms ease;
- border-radius: 0.25rem;
+ 
 
 }
-#input-container{
+
+#todo-input,#todo-input-label-cont,#submit-input,#input-container{
+transition: height 200ms ease;
+ border-radius: 0.25rem;
+ width: 100%;
+   
+}
+
+#input-container,#submit-input,.todo-item{
   height: 2.5rem;
+}
+
+#submit-input{
+  color: white;
+  background-color: #2667FF;
+  margin-top: 0.75rem;
+  border: 0;
+}
+#submit-input:disabled{
+  filter: grayscale(50%);
+}
+
+.todo-item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem 0 1rem;
+  border: 1px solid white;
+}
+
+.todo-item-cont{
+  margin-top: 2rem;
+  color: black;
+}
+.todo-item:nth-child(odd){
+  background-color: #28AFB0;
+}
+.todo-item:nth-child(even){
+  background-color: #BBDEF0;
+}
+
+.delete-icon{
+  width: 2rem;
+  font-size: 1.7rem;
+  cursor: pointer;
 }

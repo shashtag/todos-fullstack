@@ -23,7 +23,6 @@ class TodoListView(APIView):
         return Response(self.get({}).data, status=status.HTTP_200_OK)
 
     def delete(self,request):
-        print(json.loads(request.body)['_id'])
-        db.delete_one({'_id': ObjectId(json.loads(request.body)['_id'])})
+        db.delete_one({'_id': ObjectId(json.loads(request.body)["id"])})
         return Response(self.get({}).data, status=status.HTTP_200_OK)
 
