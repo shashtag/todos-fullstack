@@ -11,7 +11,7 @@ const useAPI = (url, method) => {
   return useCallback(async (body, callback) => {
     dispatch({ type: "set_loading" });
     try {
-      const data = await fetch(`http://localhost:8000/${url}/`, {
+      const data = await fetch(`http://localhost:8000/${url}0/`, {
         method: method,
         headers,
         body: JSON.stringify(body),

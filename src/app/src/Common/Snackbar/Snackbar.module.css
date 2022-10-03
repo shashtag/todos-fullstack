@@ -1,8 +1,19 @@
 .snackbarCont{
-  width:200px;
+ 
   position: fixed;
   right:20px;
   bottom: 20px;
   background: #160B0B;
   padding: 1rem;
+  color:#F4C7C7;
+animation-name: travel;
+  animation-duration: 200ms;
+  white-space: nowrap;
+
+}
+
+
+@keyframes travel {
+  from {transform: translateX(100%);}
+  to {transform: translateX(0);}
 }

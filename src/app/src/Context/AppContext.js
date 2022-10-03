@@ -19,6 +19,8 @@ const reducer = (state, action) => {
       return { ...state, todos: action.payload, loading: false };
     case "clear_state_with_error":
       return { ...state, loading: false, error: true };
+    case "close_error":
+      return { ...state, error: false };
     default:
       return state;
   }
