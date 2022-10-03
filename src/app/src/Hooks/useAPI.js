@@ -19,8 +19,7 @@ const useAPI = (url, method) => {
       dispatch({ type: "clear_state", payload: data });
       callback?.();
     } catch (e) {
-      console.log(e.message);
-      dispatch({ type: "clear_state_with_error", payload: e });
+      dispatch({ type: "clear_state_with_error" });
     }
   }, []);
 };

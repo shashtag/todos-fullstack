@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const initialState = {
   loading: false,
   todos: initialData,
-  error: undefined,
+  error: false,
 };
 
 const reducer = (state, action) => {
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
     case "clear_state":
       return { ...state, todos: action.payload, loading: false };
     case "clear_state_with_error":
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: true };
     default:
       return state;
   }

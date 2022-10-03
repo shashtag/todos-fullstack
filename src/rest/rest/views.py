@@ -14,7 +14,7 @@ db = MongoClient(mongo_uri)['test_db']["todos"]
 class TodoListView(APIView):
 
     def get(self,_):
-        return Response(json.loads(json_util.dumps([*db.find()])), status=status.HTTP_200_OK)
+        return Response(json.loads(json_util.dumps([*db.find({})])), status=status.HTTP_200_OK)
         
     def post(self, request):  
         db.insert_one({"title":json.loads(request.body)['title']})
