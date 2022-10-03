@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import { useCallback, useContext } from "react";
 import { AppContext } from "../Context/AppContext";
 
 const headers = {
@@ -18,7 +18,10 @@ const useAPI = (url, method) => {
       }).then((response) => response.json());
       dispatch({ type: "clear_state", payload: data });
       callback?.();
-    } catch (e) {}
+    } catch (e) {
+      console.log(e.message);
+      dispatch({ type: "clear_state_with_error", payload: e });
+    }
   }, []);
 };
 
